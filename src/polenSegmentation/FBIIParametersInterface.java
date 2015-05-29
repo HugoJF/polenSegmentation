@@ -58,7 +58,7 @@ public class FBIIParametersInterface extends JFrame {
 	 * @param polenSegmentation 
 	 * @param polenSegmentation 
 	 */
-	public FBIIParametersInterface(PolenSegmentation polenSegmentation) {
+	public FBIIParametersInterface(final PolenSegmentation polenSegmentation) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
