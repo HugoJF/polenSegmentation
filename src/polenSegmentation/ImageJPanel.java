@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +84,33 @@ public class ImageJPanel extends JPanel {
 
 				g.setColor(Color.RED);
 				VisualizeShapes.drawPolygon(vertexes, true, (Graphics2D) g);
+				
+				Point lowBound = new Point();
+				Point uppBound = new Point();
+				
+				lowBound.x = vertexes.get(0).x;
+				lowBound.y = vertexes.get(0).y;
+				uppBound.x = vertexes.get(0).x;
+				uppBound.y = vertexes.get(0).y;
+				
+				for(Point2D_I32 p : vertexes) {
+					if(p.x < lowBound.x) lowBound.x = p.x;
+					if(p.y < lowBound.y) lowBound.y = p.y;
+					
+					if(p.x > uppBound.x) uppBound.x = p.x;
+					if(p.y > uppBound.y) uppBound.y = p.y;
+				}
+				int width = uppBound.x - lowBound.x;
+				int height = uppBound.y - lowBound.y;
+				int pad = 5;
+				
+				((Graphics2D) g).setColor(Color.GREEN);
+				
+				System.out.println("Drawing @" + lowBound.x + "x" + lowBound.y + " to " + uppBound.x + "x" + uppBound.y + " with " + width + "px width and " + height + "px height");
+				
+				((Graphics2D) g).drawRect(lowBound.x - pad, lowBound.y - pad, width + pad, height + pad);
+				
+				
 
 				// handle internal contours now
 				/*g.setColor(Color.BLUE);
